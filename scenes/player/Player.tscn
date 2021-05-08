@@ -1,0 +1,75 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://textures/sheet.png" type="Texture" id=1]
+[ext_resource path="res://scenes/player/Player.gd" type="Script" id=2]
+[ext_resource path="res://scenes/player/CamContainer.gd" type="Script" id=3]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=4]
+radius = 4.0
+height = 4.0
+
+[node name="Player" type="KinematicBody2D" groups=[
+"player",
+]]
+z_index = 100
+collision_layer = 2
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, 1 )
+rotation = 1.57079
+frames = SubResource( 3 )
+animation = "idle"
+playing = true
+
+[node name="DirSprite" type="Sprite" parent="."]
+rotation = 1.57079
+texture = ExtResource( 1 )
+offset = Vector2( 0, -10 )
+region_enabled = true
+region_rect = Rect2( 116, 39, 8, 5 )
+
+[node name="GoalSprite" type="Sprite" parent="."]
+position = Vector2( -0.0147095, -0.0374556 )
+rotation = 1.57079
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 1 )
+offset = Vector2( 0.0757144, -138.029 )
+region_enabled = true
+region_rect = Rect2( 112, 48, 16, 16 )
+
+[node name="FuelSprite" type="Sprite" parent="."]
+position = Vector2( -0.089035, -0.0374556 )
+rotation = 1.57079
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 1 )
+offset = Vector2( 0.0757154, -138.178 )
+region_enabled = true
+region_rect = Rect2( 112, 64, 16, 16 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.57079
+shape = SubResource( 4 )
+
+[node name="CamContainer" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="Cam" type="Camera2D" parent="CamContainer"]
+current = true
+zoom = Vector2( 0.25, 0.25 )

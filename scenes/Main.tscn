@@ -1,0 +1,145 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://resources/font_big.tres" type="DynamicFont" id=1]
+[ext_resource path="res://resources/font_med.tres" type="DynamicFont" id=2]
+[ext_resource path="res://scenes/MenuScreen.gd" type="Script" id=3]
+[ext_resource path="res://textures/fuel_icon.png" type="Texture" id=5]
+[ext_resource path="res://resources/theme_norm.tres" type="Theme" id=6]
+[ext_resource path="res://scenes/HUD.gd" type="Script" id=7]
+
+[node name="Main" type="Node"]
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="MenuScreen" type="Control" parent="UILayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="UILayer/MenuScreen"]
+anchor_right = 1.0
+margin_top = 41.0
+margin_bottom = 129.0
+custom_fonts/font = ExtResource( 1 )
+text = "Rush Cop"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title2" type="Label" parent="UILayer/MenuScreen"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -95.0
+margin_bottom = -26.0
+custom_fonts/font = ExtResource( 2 )
+text = "created in under 3 hours for
+trijam #119 by codenmore"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title3" type="Label" parent="UILayer/MenuScreen"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -442.0
+margin_bottom = -337.0
+custom_fonts/font = ExtResource( 2 )
+text = "LEFT-CLICK: FORWARD
+RIGHT-CLICK: REVERSE
+AIM WITH MOUSE DIRECTION"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Result" type="Label" parent="UILayer/MenuScreen"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = 2.0
+margin_bottom = 35.0
+custom_fonts/font = ExtResource( 2 )
+text = "RESULT HERE"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="UILayer/MenuScreen"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -105.0
+margin_top = 83.0
+margin_right = 105.0
+margin_bottom = 177.0
+custom_fonts/font = ExtResource( 1 )
+text = "play"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HUD" type="Control" parent="UILayer"]
+anchor_right = 0.75
+anchor_bottom = 0.75
+rect_scale = Vector2( 1.5, 1.5 )
+theme = ExtResource( 6 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FuelIcon" type="TextureRect" parent="UILayer/HUD"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 16.0
+margin_bottom = 16.0
+rect_scale = Vector2( 2, 2 )
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FuelBar" type="ProgressBar" parent="UILayer/HUD"]
+margin_left = 40.0
+margin_top = 14.0
+margin_right = 185.0
+margin_bottom = 25.0
+max_value = 1.0
+step = 0.001
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScoreLabel" type="Label" parent="UILayer/HUD"]
+margin_left = 42.0
+margin_top = 25.3333
+margin_right = 112.0
+margin_bottom = 36.3333
+text = "Score: ###"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TimeLabel" type="Label" parent="UILayer/HUD"]
+margin_left = 189.333
+margin_top = 12.6667
+margin_right = 341.333
+margin_bottom = 23.6667
+text = "Time to stop crime: ??"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Main2D" type="Node2D" parent="."]
+
+[connection signal="pressed" from="UILayer/MenuScreen/Button" to="UILayer/MenuScreen" method="_on_Button_pressed"]
